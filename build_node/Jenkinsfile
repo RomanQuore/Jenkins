@@ -1,6 +1,8 @@
 pipeline {
-    agent 
-    { label 'master'}
+    agent any
+    tools {
+        nodejs '20.11.0'
+    }
 
         stages {
             stage ('install') {
