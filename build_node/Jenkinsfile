@@ -2,9 +2,7 @@ pipeline {
     agent any
 
     tools {
-        NodeJS { 
-            install '20.11.0'
-        }
+        jenkins.plugins.nodejs.tools.NodeJSInstallation('20.11.0')
     }
 
     stages {
