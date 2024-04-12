@@ -1,31 +1,15 @@
 pipeline {
     agent any
 
-    environment {
-        NODEJS_HOME = tool name: 'nodejs-20.11.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        PATH="${NODEJS_HOME}/bin:${PATH}"
-    }
-
     stages {
-        stage('Install Node.js and npm') {
-            steps {
-                script {
-                    def npmInstallation = tool name: 'npm', type: 'npm'
-                    env.PATH = "${npmInstallation}:${env.PATH}"
-                    sh 'npm --version'
-                }
-            }
-        }
-
-        stage('Install dependencies') {
+        stage('install') {
             steps {
                 dir("build_node") {
                     sh "npm install"
                 }
             }
         }
-
-        stage('Run tests') {
+        stage('test') {
             steps {
                 dir("build_node") {
                     sh "npm test"
