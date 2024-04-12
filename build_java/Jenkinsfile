@@ -1,9 +1,19 @@
 pipeline {
-    agent any
+    agent { label 'master' }
     //{ label 'master'}
 
         stages {
- 
+            
+            stage ('install') {
+                steps {
+                  dir("build_node"){
+                        sh "npm install"
+                  }
+                   
+                   
+                }
+            }
+            
             stage ('test') {
                 steps {
                   dir("build_java"){
