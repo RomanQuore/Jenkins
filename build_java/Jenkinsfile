@@ -4,7 +4,7 @@ pipeline {
 
         stages {
             
-            stage ('installqqq') {
+            stage ('install') {
                 steps {
                   dir("build_node"){
                         sh "npm install"
@@ -14,7 +14,7 @@ pipeline {
                 }
             }
             
-            stage ('install') {
+            stage ('test') {
                 steps {
                   dir("build_java"){
                         echo "mvn clean compile test"
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
 
-            stage ('test') {
+            stage ('Create docker image') {
                 steps {
                     dir("build_java"){
 
